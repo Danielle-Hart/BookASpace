@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookASpace.Views.AvailableRoomsPage"
+             Title="Available Rooms">
+
+    <Grid Padding="20" RowDefinitions="Auto,*">
+        <Label Grid.Row="0"
+               Text="Available Rooms"
+               FontSize="28"
+               FontAttributes="Bold"
+               Margin="0,0,0,15" />
+
+        <CollectionView Grid.Row="1" x:Name="RoomsCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="LightGray"
+                           CornerRadius="10"
+                           Padding="12"
+                           Margin="0,5">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding DisplayName}"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+
+                            <Label Text="{Binding Description}" />
+
+                            <Label Text="{Binding Capacity, StringFormat='Capacity: {0}'}" />
+
+                            <Button Text="View Details"
+                                    Clicked="OnViewDetailsClicked" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
