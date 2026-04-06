@@ -3,18 +3,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BookASpace.Views;
 
-public partial class MyReservationsPage : ContentPage
+public partial class ProfilePage : ContentPage
 {
-    public MyReservationsPage()
+    public ProfilePage()
     {
         InitializeComponent();
-        BindingContext = App.Services.GetRequiredService<MyReservationsViewModel>();
+        BindingContext = App.Services.GetRequiredService<ProfileViewModel>();
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        if (BindingContext is MyReservationsViewModel vm)
+        if (BindingContext is ProfileViewModel vm)
             await vm.LoadCommand.ExecuteAsync(null);
     }
 }

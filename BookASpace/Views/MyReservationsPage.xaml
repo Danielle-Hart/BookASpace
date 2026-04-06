@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Name="PageRoot"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BookASpace.ViewModels"
+             xmlns:models="clr-namespace:BookASpace.Models"
              x:Class="BookASpace.Views.MyReservationsPage"
+             x:DataType="vm:MyReservationsViewModel"
              Title="My Reservations">
 
-    <VerticalStackLayout Padding="20">
-        <Label
-            Text="My Reservations"
-            FontSize="28"
-            FontAttributes="Bold" />
+    <Grid Padding="20" RowDefinitions="Auto,Auto,*">
+        <Label Grid.Row="0"
+               Text="My reservations"
+               FontSize="28"
+               FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level1"
+               Margin="0,0,0,8" />
 
-        <Label Text="Your saved bookings will appear here." />
-    </VerticalStackLayout>
+        <Label Grid.Row="1"
+               Text="Your saved bookings on this device appear here. Edit times, add notes, or cancel when plans change."
+               FontSize="13"
+               TextColor="{AppThemeBinding Light=#444444, Dark=#CCCCCC}"
+               IsVisible="{Binding IsEmpty}"
+               Margin="0,0,0,12" />
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Reservations}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Reservation">
+                    <Frame BorderColor="LightGray"
+                           CornerRadius="10"
+                           Padding="12"
+                           Margin="0,5">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="{Binding RoomDisplayName}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Start, StringFormat='Starts: {0:g}'}" />
+                            <Label Text="{Binding End, StringFormat='Until: {0:g}'}" />
+                            <Label Text="{Binding Notes}"
+                                   IsVisible="{Binding HasNotes}" />
+                            <HorizontalStackLayout Spacing="8">
+                                <Button Text="Edit"
+                                        Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.EditCommand}"
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="Cancel"
+                                        Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.CancelCommand}"
+                                        CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label Text="No reservations yet. Use the Rooms tab to find a space."
+                       HorizontalTextAlignment="Center"
+                       Margin="0,48,0,0" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </Grid>
 </ContentPage>

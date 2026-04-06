@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BookASpace.ViewModels"
              x:Class="BookASpace.Views.BookRoomPage"
-             Title="BookRoomPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:DataType="vm:BookRoomViewModel"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Label Text="{Binding RoomDisplayName}"
+                   FontSize="22"
+                   FontAttributes="Bold" />
+
+            <Label Text="Date"
+                   FontAttributes="Bold" />
+            <DatePicker x:Name="BookingDatePicker"
+                        Date="{Binding BookingDate, Mode=TwoWay}" />
+
+            <Label Text="Start time"
+                   FontAttributes="Bold" />
+            <TimePicker Time="{Binding StartTime, Mode=TwoWay}" />
+
+            <Label Text="End time"
+                   FontAttributes="Bold" />
+            <TimePicker Time="{Binding EndTime, Mode=TwoWay}" />
+
+            <Label Text="Notes (optional)"
+                   FontAttributes="Bold" />
+            <Editor Text="{Binding Notes, Mode=TwoWay}"
+                    Placeholder="Course, group name, etc."
+                    AutoSize="TextChanges"
+                    MinimumHeightRequest="80"
+                    MaxLength="500" />
+
+            <Button Text="{Binding SaveButtonText}"
+                    Margin="0,12,0,0"
+                    Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -20,6 +20,6 @@ public partial class RoomDetailsPage : ContentPage
 
     private async void OnRoomClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Booked!", "Room Successfully Booked!", "OK");
+        await Navigation.PushAsync(new BookRoomPage(_selectedRoom));
     }
 }

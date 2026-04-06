@@ -11,15 +11,28 @@
                HorizontalOptions="Center"
                SemanticProperties.HeadingLevel="Level1" />
 
-        <Label Text="Reserve Campus-Wide Study Rooms Quickly and Easily!"
+        <Label Text="Campus study room reservation"
                FontSize="16"
+               FontAttributes="Italic"
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center" />
 
-        <Button Text="View Available Rooms"
+        <Label Text="Find open study rooms across campus, see amenities, and manage bookings in one place. Availability “now” uses your saved reservations on this device."
+               FontSize="15"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               TextColor="{AppThemeBinding Light=#333333, Dark=#DDDDDD}" />
+
+        <Button Text="View available rooms"
+                SemanticProperties.Description="Browse study rooms and filters"
                 Clicked="OnAvailableRoomsClicked" />
 
-        <Button Text="My Reservations"
+        <Button Text="My reservations"
+                SemanticProperties.Description="View edit or cancel bookings"
                 Clicked="OnMyReservationsClicked" />
+
+        <Button Text="UC account (M number &amp; email)"
+                SemanticProperties.Description="Open account profile page"
+                Clicked="OnAccountClicked" />
     </VerticalStackLayout>
 </ContentPage>

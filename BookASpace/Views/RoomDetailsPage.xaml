@@ -22,7 +22,8 @@
             <Label x:Name="OutletsLabel"
                    FontSize="16" />
 
-            <Button Text="Book Room"
+            <Button Text="Book room"
+                    SemanticProperties.Hint="Choose date and time for this study room"
                     Clicked="OnRoomClicked" />
 
         </VerticalStackLayout>

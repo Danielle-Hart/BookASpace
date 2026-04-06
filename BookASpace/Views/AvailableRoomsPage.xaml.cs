@@ -1,31 +1,20 @@
-using BookASpace.Models;
-using BookASpace.Services;
+using BookASpace.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BookASpace.Views;
 
 public partial class AvailableRoomsPage : ContentPage
 {
-    private readonly RoomService _roomService;
-    private List<Room> _rooms;
-
     public AvailableRoomsPage()
     {
         InitializeComponent();
-
-        _roomService = new RoomService();
-        _rooms = _roomService.GetRooms();
-
-        RoomsCollectionView.ItemsSource = _rooms;
+        BindingContext = App.Services.GetRequiredService<AvailableRoomsViewModel>();
     }
 
-    private async void OnViewDetailsClicked(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        var button = sender as Button;
-        var room = button?.BindingContext as Room;
-
-        if (room != null)
-        {
-            await Navigation.PushAsync(new RoomDetailsPage(room));
-        }
+        base.OnAppearing();
+        if (BindingContext is AvailableRoomsViewModel vm)
+            await vm.RefreshCommand.ExecuteAsync(null);
     }
 }

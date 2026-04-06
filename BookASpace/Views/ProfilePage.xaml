@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BookASpace.ViewModels"
+             x:Class="BookASpace.Views.ProfilePage"
+             x:DataType="vm:ProfileViewModel"
+             Title="Account">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Label Text="UC account"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   SemanticProperties.HeadingLevel="Level1" />
+
+            <Label Text="Store your M number and UC email on this device so booking confirmations and future features can personalize to you. Data stays local in SQLite until you add cloud sign-in."
+                   FontSize="13"
+                   TextColor="{AppThemeBinding Light=#444444, Dark=#CCCCCC}" />
+
+            <Label Text="M number"
+                   FontAttributes="Bold" />
+            <Entry Text="{Binding MNumber, Mode=TwoWay}"
+                   Placeholder="e.g. M12345678"
+                   MaxLength="32"
+                   SemanticProperties.Hint="University of Cincinnati M number" />
+
+            <Label Text="UC email"
+                   FontAttributes="Bold" />
+            <Entry Text="{Binding UcEmail, Mode=TwoWay}"
+                   Placeholder="you@mail.uc.edu"
+                   Keyboard="Email"
+                   MaxLength="128"
+                   SemanticProperties.Hint="University of Cincinnati email address" />
+
+            <Button Text="Save profile"
+                    Margin="0,16,0,0"
+                    Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

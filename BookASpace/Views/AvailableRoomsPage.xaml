@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Name="PageRoot"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BookASpace.ViewModels"
+             xmlns:models="clr-namespace:BookASpace.Models"
              x:Class="BookASpace.Views.AvailableRoomsPage"
+             x:DataType="vm:AvailableRoomsViewModel"
              Title="Available Rooms">
 
-    <Grid Padding="20" RowDefinitions="Auto,*">
-        <Label Grid.Row="0"
-               Text="Available Rooms"
-               FontSize="28"
-               FontAttributes="Bold"
-               Margin="0,0,0,15" />
+    <Grid Padding="20" RowDefinitions="Auto,*" RowSpacing="12">
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="Available rooms"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   SemanticProperties.HeadingLevel="Level1" />
 
-        <CollectionView Grid.Row="1" x:Name="RoomsCollectionView">
+            <Label Text="Filter by building, amenities, or show rooms that are free right now (based on your saved bookings on this device)."
+                   FontSize="13"
+                   TextColor="{AppThemeBinding Light=#444444, Dark=#CCCCCC}" />
+
+            <Label Text="Building" FontAttributes="Bold" />
+            <Picker Title="Building"
+                    ItemsSource="{Binding Buildings}"
+                    SelectedItem="{Binding SelectedBuilding, Mode=TwoWay}" />
+
+            <HorizontalStackLayout Spacing="24">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Whiteboard" FontAttributes="Bold" />
+                    <Switch IsToggled="{Binding RequireWhiteboard, Mode=TwoWay}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Charging / outlets" FontAttributes="Bold" />
+                    <Switch IsToggled="{Binding RequireOutlets, Mode=TwoWay}" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                <Switch IsToggled="{Binding OnlyAvailableNow, Mode=TwoWay}" />
+                <Label Text="Show only rooms available now"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding FilteredRooms}"
+                        Margin="0,8,0,0">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Room">
                     <Frame BorderColor="LightGray"
                            CornerRadius="10"
                            Padding="12"
@@ -27,12 +60,22 @@
 
                             <Label Text="{Binding Capacity, StringFormat='Capacity: {0}'}" />
 
-                            <Button Text="View Details"
-                                    Clicked="OnViewDetailsClicked" />
+                            <Label Text="{Binding WhiteboardSummary}" />
+                            <Label Text="{Binding OutletsSummary}" />
+
+                            <Button Text="View details"
+                                    Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.ViewDetailsCommand}"
+                                    CommandParameter="{Binding .}" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label Text="No rooms match these filters. Try clearing filters or picking another building."
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Margin="0,40,0,0" />
+            </CollectionView.EmptyView>
         </CollectionView>
     </Grid>
 </ContentPage>
