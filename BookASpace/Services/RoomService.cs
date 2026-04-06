@@ -64,4 +64,7 @@ public class RoomService
              }
         };
     }
+
+    public Room? GetRoomById(int id) =>
+        GetRooms().FirstOrDefault(r => r.Id == id);
 }
