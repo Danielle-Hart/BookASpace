@@ -13,7 +13,7 @@
                    FontAttributes="Bold"
                    SemanticProperties.HeadingLevel="Level1" />
 
-            <Label Text="Store your M number and UC email on this device so booking confirmations and future features can personalize to you. Data stays local in SQLite until you add cloud sign-in."
+            <Label Text="Make booking easier and save your account information."
                    FontSize="13"
                    TextColor="{AppThemeBinding Light=#444444, Dark=#CCCCCC}" />
 
@@ -32,7 +32,7 @@
                    MaxLength="128"
                    SemanticProperties.Hint="University of Cincinnati email address" />
 
-            <Button Text="Save profile"
+            <Button Text="Save Profile"
                     Margin="0,16,0,0"
                     Command="{Binding SaveCommand}" />
         </VerticalStackLayout>

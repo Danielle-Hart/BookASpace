@@ -28,7 +28,7 @@ public partial class AvailableRoomsViewModel : ObservableObject
     public ObservableCollection<string> Buildings { get; }
 
     [ObservableProperty]
-    private string selectedBuilding = "All";
+    private string selectedBuilding = "All Buildings";
 
     [ObservableProperty]
     private bool requireWhiteboard;

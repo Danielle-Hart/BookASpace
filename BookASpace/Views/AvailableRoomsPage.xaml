@@ -10,12 +10,11 @@
 
     <Grid Padding="20" RowDefinitions="Auto,*" RowSpacing="12">
         <VerticalStackLayout Grid.Row="0" Spacing="10">
-            <Label Text="Available rooms"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   SemanticProperties.HeadingLevel="Level1" />
-
-            <Label Text="Filter by building, amenities, or show rooms that are free right now (based on your saved bookings on this device)."
+            <Label Text="Filter:"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+            
+            <Label Text="Filter rooms by building and amenities."
                    FontSize="13"
                    TextColor="{AppThemeBinding Light=#444444, Dark=#CCCCCC}" />
 
@@ -30,15 +29,13 @@
                     <Switch IsToggled="{Binding RequireWhiteboard, Mode=TwoWay}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="4">
-                    <Label Text="Charging / outlets" FontAttributes="Bold" />
+                    <Label Text="Outlets" FontAttributes="Bold" />
                     <Switch IsToggled="{Binding RequireOutlets, Mode=TwoWay}" />
                 </VerticalStackLayout>
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
-                <Switch IsToggled="{Binding OnlyAvailableNow, Mode=TwoWay}" />
-                <Label Text="Show only rooms available now"
-                       VerticalOptions="Center" />
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Available Rooms" FontAttributes="Bold" />
+                    <Switch IsToggled="{Binding RequireOutlets, Mode=TwoWay}" />
+                </VerticalStackLayout>
             </HorizontalStackLayout>
         </VerticalStackLayout>
 

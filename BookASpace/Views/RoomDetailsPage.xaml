@@ -22,7 +22,7 @@
             <Label x:Name="OutletsLabel"
                    FontSize="16" />
 
-            <Button Text="Book room"
+            <Button Text="Book Room"
                     SemanticProperties.Hint="Choose date and time for this study room"
                     Clicked="OnRoomClicked" />
 

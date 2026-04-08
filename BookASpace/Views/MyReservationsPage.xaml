@@ -9,13 +9,6 @@
              Title="My Reservations">
 
     <Grid Padding="20" RowDefinitions="Auto,Auto,*">
-        <Label Grid.Row="0"
-               Text="My reservations"
-               FontSize="28"
-               FontAttributes="Bold"
-               SemanticProperties.HeadingLevel="Level1"
-               Margin="0,0,0,8" />
-
         <Label Grid.Row="1"
                Text="Your saved bookings on this device appear here. Edit times, add notes, or cancel when plans change."
                FontSize="13"

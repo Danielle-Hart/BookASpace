@@ -5,7 +5,7 @@
              Title="Confirmed">
 
     <VerticalStackLayout Padding="24" Spacing="16" VerticalOptions="Center">
-        <Label Text="You are booked"
+        <Label Text="You are Booked!"
                FontSize="26"
                FontAttributes="Bold"
                HorizontalOptions="Center"
@@ -15,7 +15,7 @@
                FontSize="16"
                HorizontalTextAlignment="Center" />
 
-        <Button Text="Back to room list"
+        <Button Text="Back to Room List"
                 Margin="0,24,0,0"
                 Clicked="OnDoneClicked" />
     </VerticalStackLayout>
